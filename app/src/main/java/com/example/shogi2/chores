@@ -1,0 +1,47 @@
+The Layout Assignment
+Kat
+-------------------------
+> Death box
+
+> Make pieces clickable and such
+-------------------------
+
+Brent
+-------------------------
+> Board
+> Promoted Silver
+> Promoted Knight
+> Promoted Lance
+> Promoted Pawn
+-------------------------
+
+Emma
+-------------------------
+> Text
+> Promoted Rook
+> Promoted Bishop
+-------------------------
+
+Matt
+-------------------------
+> Pieces
+-------------------------
+
+
+The Game Development -
+
+The Board: Keep Image or Make Class?
+Answer: Class
+
+The Grave: Image or Class?
+Answer: Class
+
+Promotion: Prompt or Grab?
+Answer: Prompt with asking what they want to promote to, possible promotion button when piece is in play
+
+Piece Movement:
+Shall be in a class, most likely in the board class
+(Caveat - bounds checking helper method, check if can move on board)
+
+
+
