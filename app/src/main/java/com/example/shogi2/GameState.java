@@ -49,10 +49,13 @@ public class GameState extends Button{
 
     //Make methods for defined actions
     //make pieces
-    private void assignPieces(ArrayList<Piece>){
-        for(piece : Piece.GAME_PIECES){
-
-        }
+    private void assignPieces(){
+        for(Piece.GAME_PIECES piece : Piece.GAME_PIECES.values()){
+            for(int i = 0; i < piece.getAmount(); i++){
+                Pieces1.add(new Piece(piece, Piece.DIRECTION.FORWARD));
+                Pieces2.add(new Piece(piece,Piece.DIRECTION.BACKWARD));
+            } // for i
+        } // for pieces
     }
     // see who goes first
     public boolean first(){

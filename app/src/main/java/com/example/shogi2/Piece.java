@@ -34,7 +34,9 @@ public class Piece {
 
     public DIRECTION directionMovement;
 
-    public Piece(){
-        pieceType = new GAME_PIECES;
+    public Piece(GAME_PIECES type, DIRECTION dir){
+        pieceType = type;
+        directionMovement = dir;
     }
+
 }
