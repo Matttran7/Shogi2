@@ -21,4 +21,22 @@ public class GameState {
      * *** if stalemate ***
      * Previous turn state
      * */
+
+    public GameState() { //Cntr
+
+
+    }
+
+    public GameState(GameState orig) { //DEEP COPY cntr
+
+
+    }
+
+    public String toString() {
+
+        return null;
+    }
+
+    //Make methods for defined actions
+
 }
