@@ -2,6 +2,8 @@ package com.example.shogi2;
 
 import android.os.Bundle;
 import android.content.pm.ActivityInfo;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -13,4 +15,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void run(View view) {
+
+
+    }
 }
