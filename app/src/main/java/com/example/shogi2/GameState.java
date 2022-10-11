@@ -43,8 +43,9 @@ public class GameState extends Button{
     public GameState(GameState orig) { //DEEP COPY cntr
     }
 
-    public String toString(GameState state) {
-        return null;
+    @Override
+    public String toString() {
+        return "Weeee";
     }
 
     //Make methods for defined actions
