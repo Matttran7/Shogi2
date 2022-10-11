@@ -32,7 +32,7 @@ public class GameState {
 
     }
 
-    public String toString() {
+    public String toString(GameState state) {
 
         return null;
     }
