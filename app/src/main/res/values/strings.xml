@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Shogi2</string>
+
+    <string name="state_text">Hiiii</string>
 </resources>

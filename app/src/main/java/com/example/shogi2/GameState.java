@@ -32,7 +32,8 @@ public class GameState {
 
     }
 
-    public String toString(GameState state) {
+    @Override
+    public String toString() {
 
         return null;
     }

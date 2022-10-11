@@ -15,7 +15,7 @@
             android:id="@+id/runButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:onClick="run"
+            android:onClick="onClick"
             android:text="Run Test" />
 
     </LinearLayout>
@@ -30,7 +30,7 @@
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
             android:inputType="text"
-            android:text="Hiiiiiiiiiii" />
+            android:text="@string/state_text" />
 
     </LinearLayout>
 
