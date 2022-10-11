@@ -12,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText text;
-    private Button runButton;
     private GameState firstInstance, secondInstance, thirdInstance;
     private String gameString;
 
@@ -21,8 +20,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        runButton = findViewById(R.id.runButton);
-        text = findViewById(R.id.stateText);
+
+        text = findViewById(R.id.stateText); //Make this a reference to the @string?
 
         firstInstance = new GameState();
         secondInstance = new GameState(firstInstance);
