@@ -26,31 +26,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         firstInstance = new GameState();
         secondInstance = new GameState(firstInstance);
+        //TODO: Fix gamestate copy cntr to make it from a specific player perspective
         thirdInstance = new GameState();
 
     }
 
     @Override
     public void onClick(View v) {
-        text.setText(""); //Clear the string
 
-        gameString = firstInstance.toString(); //Default board
+        if (v.getId() == R.id.runButton) {
 
-        //Call a method here to make a change in firstInstance
+            text.setText(""); //Clear the string
 
-        gameString = gameString + "\n" + firstInstance.toString()  + "\n"; //Append after a change
+            gameString = firstInstance.toString(); //Default board
 
-        //Call a method here to make a change in firstInstance
+            //TODO: Call a method here to make a change in firstInstance
 
-        gameString = gameString + "\n" + firstInstance.toString()  + "\n"; //Append after a change
+            gameString = gameString + "\n" + firstInstance.toString() + "\n"; //Append after a change
 
-        //Call a method here to make a change in firstInstance
+            //TODO: Call a method here to make a change in firstInstance
 
-        gameString = gameString + "\n" + firstInstance.toString()  + "\n"; //Append after a change
+            gameString = gameString + "\n" + firstInstance.toString() + "\n"; //Append after a change
 
-        gameString = gameString + "\n" + secondInstance.toString()  + "\n"
-                + thirdInstance.toString()  + "\n"  + "\n"; //Append the other two instances (should be the same)
+            //TODO: Call a method here to make a change in firstInstance
 
-        text.setText(gameString); //Print the string ver
+            gameString = gameString + "\n" + firstInstance.toString() + "\n"; //Append after a change
+
+            gameString = gameString + "\n" + secondInstance.toString() + "\n"
+                    + thirdInstance.toString() + "\n" + "\n"; //Append the other two instances (should be the same)
+
+            text.setText(gameString); //Print the string ver
+        }
     }
 }
