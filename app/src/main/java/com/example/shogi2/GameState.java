@@ -30,6 +30,7 @@ public class GameState extends Button{
     private Graveyard grave_2;
     private ArrayList<Piece> Pieces1;
     private ArrayList<Piece> Pieces2;
+    private String banner;
 
     public GameState() { //Cntr
         Turn = first();
@@ -38,6 +39,12 @@ public class GameState extends Button{
         grave_2 = new Graveyard();
         Pieces1 = new ArrayList<Piece>();
         Pieces2 = new ArrayList<Piece>();
+        if(Turn == true) {
+            banner = "Player one's Turn";
+        }
+        else{
+            banner = "Player Two's turn";
+        }
     }
 
     public GameState(GameState orig) { //DEEP COPY cntr
