@@ -2,8 +2,7 @@ package com.example.shogi2;
 
 public class Piece {
 
-    public enum GAME_PIECES
-    {
+    public enum GAME_PIECES {
         KING (R.drawable.king,1), GOLD_GENERAL (R.drawable.gold_gen,2), SILVER_GENERAL (R.drawable.silv_gen,2),
         PROMOTED_SILVER_GENERAL (R.drawable.promoted_silv_gen,2), BISHOP (R.drawable.bishop,1),
         PROMOTED_BISHOP (R.drawable.promoted_bishop,1), ROOK (R.drawable.rook,1),
@@ -13,7 +12,7 @@ public class Piece {
 
         private final int id;
         private final int amount;
-        GAME_PIECES(int drawableID, int _amount) {
+        GAME_PIECES (int drawableID, int _amount) {
             this.id = drawableID;
             this.amount = _amount;
         }
@@ -25,8 +24,7 @@ public class Piece {
         }
     }
 
-    public enum DIRECTION
-    {
+    public enum DIRECTION {
         FORWARD, BACKWARD
     }
 
@@ -34,7 +32,7 @@ public class Piece {
 
     public DIRECTION directionMovement;
 
-    public Piece(GAME_PIECES type, DIRECTION dir){
+    public Piece(GAME_PIECES type, DIRECTION dir) {
         pieceType = type;
         directionMovement = dir;
     }
