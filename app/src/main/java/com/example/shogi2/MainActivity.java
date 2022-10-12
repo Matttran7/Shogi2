@@ -5,6 +5,17 @@ import android.view.View;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
+/**
+ *
+ * @author Kathryn Weidman
+ * @author Emma Kelly
+ * @author Brent Torres
+ * @author Matthew Tran
+ *
+ * @version 10/11/2022
+ *
+ * */
+
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private EditText text;

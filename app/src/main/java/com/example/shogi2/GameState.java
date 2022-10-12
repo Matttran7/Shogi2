@@ -3,6 +3,17 @@ package com.example.shogi2;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ *
+ * @author Kathryn Weidman
+ * @author Emma Kelly
+ * @author Brent Torres
+ * @author Matthew Tran
+ *
+ * @version 10/11/2022
+ *
+ * */
+
 public class GameState {
     /* [other class]/
     * Board (reference to copy constructor)
@@ -51,7 +62,6 @@ public class GameState {
         this.grave_2 = orig.grave_2;
         this.pieces1.addAll(orig.pieces1);
         this.pieces2.addAll(orig.pieces2);
-
     }
 
     public void changeTurn() {
