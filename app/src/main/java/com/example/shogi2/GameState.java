@@ -37,7 +37,8 @@ public class GameState {
      * */
     private boolean turn; // [true = Player 1, false = other]
     private Board board;
-    private int playerID;
+    private final int p1 = 0;
+    private final int p2 = 1;
     private Graveyard grave_1;
     private Graveyard grave_2;
     private ArrayList<Piece> pieces1;
