@@ -3,7 +3,7 @@ package com.example.shogi2;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class GameState extends Button{
+public class GameState {
     /* [other class]/
     * Board (reference to copy constructor)
     * Pieces
@@ -57,23 +57,26 @@ public class GameState extends Button{
 
     //Make methods for defined actions
     //make pieces
-    private void assignPieces(){
-        for(Piece.GAME_PIECES piece : Piece.GAME_PIECES.values()){
-            for(int i = 0; i < piece.getAmount(); i++){
+    private void assignPieces() {
+        for (Piece.GAME_PIECES piece : Piece.GAME_PIECES.values()) {
+            for (int i = 0; i < piece.getAmount(); i++) {
                 Pieces1.add(new Piece(piece, Piece.DIRECTION.FORWARD));
                 Pieces2.add(new Piece(piece,Piece.DIRECTION.BACKWARD));
             } // for i
         } // for pieces
     }
     // see who goes first
-    public boolean first(){
+    public boolean first() {
         Random rand = new Random();
         int i = rand.nextInt(11);
-        if(i < 6){return true;}
-        else{return false;}
+        if (i < 6) {
+            return true;
+        } else {
+            return false;
+        }
     }
     // check and checkmate methods
-    public boolean isChecked(){return false;}
-    public boolean isCheckmated(){return false;}
+    public boolean isChecked() {return false;}
+    public boolean isCheckmated() {return false;}
 
 }
