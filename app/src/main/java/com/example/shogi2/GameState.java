@@ -24,30 +24,44 @@ public class GameState {
      * *** if stalemate ***
      * Previous turn state
      * */
-    private boolean Turn; // [true = Player, false = other]
+    private boolean turn; // [true = Player 1, false = other]
     private Board board;
+    private int playerID;
     private Graveyard grave_1;
     private Graveyard grave_2;
-    private ArrayList<Piece> Pieces1;
-    private ArrayList<Piece> Pieces2;
+    private ArrayList<Piece> pieces1;
+    private ArrayList<Piece> pieces2;
     private String banner;
 
     public GameState() { //Cntr
-        Turn = first();
+        turn = first();
         board = new Board();
         grave_1 = new Graveyard();
         grave_2 = new Graveyard();
-        Pieces1 = new ArrayList<Piece>();
-        Pieces2 = new ArrayList<Piece>();
-        if(Turn == true) {
-            banner = "Player one's Turn";
-        }
-        else{
-            banner = "Player Two's turn";
-        }
+        pieces1 = new ArrayList<Piece>();
+        pieces2 = new ArrayList<Piece>();
+
     }
 
-    public GameState(GameState orig) { //DEEP COPY cntr
+    public GameState(int id, GameState orig) { //DEEP COPY cntr
+
+        this.turn = orig.turn;
+        this.board = orig.board;
+        this.grave_1 = orig.grave_1;
+        this.grave_2 = orig.grave_2;
+        this.pieces1.addAll(orig.pieces1);
+        this.pieces2.addAll(orig.pieces2);
+
+    }
+
+    public void changeTurn() {
+        turn = !turn;
+
+        if (turn) {
+            banner = "Player one's Turn";
+        } else{
+            banner = "Player Two's turn";
+        }
     }
 
     @Override
@@ -60,8 +74,8 @@ public class GameState {
     private void assignPieces() {
         for (Piece.GAME_PIECES piece : Piece.GAME_PIECES.values()) {
             for (int i = 0; i < piece.getAmount(); i++) {
-                Pieces1.add(new Piece(piece, Piece.DIRECTION.FORWARD));
-                Pieces2.add(new Piece(piece,Piece.DIRECTION.BACKWARD));
+                pieces1.add(new Piece(piece, Piece.DIRECTION.FORWARD));
+                pieces2.add(new Piece(piece,Piece.DIRECTION.BACKWARD));
             } // for i
         } // for pieces
     }

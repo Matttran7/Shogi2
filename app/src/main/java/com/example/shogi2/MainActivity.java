@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         text = findViewById(R.id.stateText); //Make this a reference to the @string?
 
         firstInstance = new GameState();
-        secondInstance = new GameState(firstInstance);
+        secondInstance = new GameState(0, firstInstance);
         //TODO: Fix gamestate copy cntr to make it from a specific player perspective
         thirdInstance = new GameState();
 
