@@ -1,30 +1,29 @@
 The Layout Assignment
 Kat
 -------------------------
-> Death box
-
-> Make pieces clickable and such
+Copy constructor
+toString
 -------------------------
 
 Brent
 -------------------------
-> Board
-> Promoted Silver
-> Promoted Knight
-> Promoted Lance
-> Promoted Pawn
+Grave
+- Drop Piece (From captured pieces)
 -------------------------
 
 Emma
 -------------------------
-> Text
-> Promoted Rook
-> Promoted Bishop
+- Select Piece
+- Move Piece (Directions specific to piece type)
+- Capture Piece (By moving)
 -------------------------
 
 Matt
 -------------------------
-> Pieces
+Board
+- Promote Piece (By moving to specific areas of board)
+- Quit
+- New Game
 -------------------------
 
 
