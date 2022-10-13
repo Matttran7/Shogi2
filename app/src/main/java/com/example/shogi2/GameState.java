@@ -16,9 +16,9 @@ import java.util.Random;
 
 public class GameState {
     /* [other class]/
-    * Board (reference to copy constructor)
-    * Pieces
-    * */
+     * Board (reference to copy constructor)
+     * Pieces
+     * */
 
     /**
      * Grave (2)
@@ -45,6 +45,9 @@ public class GameState {
     private ArrayList<Piece> pieces2;
     private String banner;
 
+    /**
+     * Current state of the game constructor
+     */
     public GameState() { //Cntr
         turn = first();
         board = new Board();
@@ -52,9 +55,11 @@ public class GameState {
         grave_2 = new Graveyard();
         pieces1 = new ArrayList<Piece>();
         pieces2 = new ArrayList<Piece>();
-
     }
 
+    /**
+     * Current state of the game deep copy constructor
+     */
     public GameState(int id, GameState orig) { //DEEP COPY cntr
 
         this.turn = orig.turn;
@@ -65,16 +70,24 @@ public class GameState {
         this.pieces2.addAll(orig.pieces2);
     }
 
+    /**
+     * Determine next turn based on current turn
+     */
     public void changeTurn() {
         turn = !turn;
 
         if (turn) {
             banner = "Player one's Turn";
         } else{
-            banner = "Player Two's turn";
+            banner = "Player two's turn";
         }
     }
 
+    /**
+     * Display all game state information in the TextView
+     * Includes: Positions, selectedPiece and pieceType, turn,
+     * and current state of the game (ongoing play).
+     */
     @Override
     public String toString() {
         return "Weeee";
@@ -103,5 +116,54 @@ public class GameState {
     // check and checkmate methods
     public boolean isChecked() {return false;}
     public boolean isCheckmated() {return false;}
+
+    /**
+     * Selecting (identifying) a piece
+     *
+     * @return selected piece ID
+     */
+    public int selectPiece() {
+
+        return 0;
+    }
+
+    /**
+     * Piece movement (hard coded now, flexible code later)
+     * Pre-set pieces: p1 (pawn), p2 (pawn), p1 (rook)
+     */
+    public void initialPositions() {
+        // board.tiles
+
+
+
+        // identify the piece
+    }
+
+    /**
+     * Piece capture (hard coded now, flexible code later)
+     * pieces: (none) not demonstrating for GameState!
+     */
+    public int pieceCapture() {
+        // ID of piece captured
+        // If 0, then no pieces were captured
+        // Sends ID to graveyard
+        return 0;
+        // identify the piece
+    }
+
+    // capture piece -> move piece
+    // capture -> if (enemy) - is at visited spot, send them to grave
+    // line per action
+    // how to have move piece: we do 3 hard coded movements
+    // then flexible movement, due friday
+    // diagonal movement
+
+    // selected piece (identifies current piece)
+    // caoture -> remove it from the board -> add it to the graveyard
+    // cant drop unless something's captured
+
+    // move a pawn, rook, and king
+
+
 
 }
