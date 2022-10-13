@@ -16,8 +16,23 @@ import java.util.ArrayList;
 public class Board {
     // copy constructor
     ArrayList<Tile> tiles;
+    int size;
+    int tileSize;
     public Board(){
         tiles = new ArrayList<Tile>();
+        size = 9;
+        tileSize = 100;
 
+        mkBoard();
+    }
+
+    private void mkBoard(){
+        tiles.clear();
+
+        for(int row = 0; row < size; row++){
+            for(int col = 0; col < size; col++){
+                Tile addTile = new Tile(row, col, tileSize*col,tileSize*row);
+            }//for col
+        }// for row
     }
 }
