@@ -44,6 +44,7 @@ public class GameState {
     private ArrayList<Piece> pieces1;
     private ArrayList<Piece> pieces2;
     private String banner;
+    private int turnCount = 1;
 
     /**
      * Current state of the game constructor
@@ -85,8 +86,6 @@ public class GameState {
 
     /**
      * Display all game state information in the TextView
-     * Includes: Positions, selectedPiece and pieceType, turn,
-     * and current state of the game (ongoing play).
      */
     @Override
     public String toString() {
@@ -118,30 +117,55 @@ public class GameState {
     public boolean isCheckmated() {return false;}
 
     /**
-     * Selecting (identifying) a piece
+     * Pre-set selected pieces and order
      *
-     * @return selected piece ID
+     * @return selected piece from pieces array otherwise 0 (none)
      */
     public int selectPiece() {
-
+        switch(turnCount) {
+            case 1:
+                turnCount++;
+                return pieces1.indexOf(Piece.GAME_PIECES.PAWN);
+            case 2:
+                turnCount++;
+                return pieces2.indexOf(Piece.GAME_PIECES.PAWN);
+            case 3:
+                return pieces1.indexOf(Piece.GAME_PIECES.ROOK);
+        }
         return 0;
     }
 
     /**
      * Piece movement (hard coded now, flexible code later)
-     * Pre-set pieces: p1 (pawn), p2 (pawn), p1 (rook)
+     * Pre-set pieces: p1 (pawn) at (7r,8c), p2 (pawn) at (3r,1c), p1 (rook) at (8r,8c)
      */
     public void initialPositions() {
-        // board.tiles
+        // identify piece
 
 
+    }
+
+    /**
+     * Piece movement (hard coded now, flexible code later)
+     * Pre-set pieces: p1 (pawn) to (6r,8c), p2 (pawn) to (4r,1c), p1 (rook) to (7r,8c)
+     */
+    public void movePiece() {
 
         // identify the piece
+        switch(turnCount) {
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break;
+
+        }
     }
 
     /**
      * Piece capture (hard coded now, flexible code later)
-     * pieces: (none) not demonstrating for GameState!
+     * pieces: (none) (skipping for GameState, from meeting)
      */
     public int pieceCapture() {
         // ID of piece captured
@@ -150,20 +174,4 @@ public class GameState {
         return 0;
         // identify the piece
     }
-
-    // capture piece -> move piece
-    // capture -> if (enemy) - is at visited spot, send them to grave
-    // line per action
-    // how to have move piece: we do 3 hard coded movements
-    // then flexible movement, due friday
-    // diagonal movement
-
-    // selected piece (identifies current piece)
-    // caoture -> remove it from the board -> add it to the graveyard
-    // cant drop unless something's captured
-
-    // move a pawn, rook, and king
-
-
-
 }

@@ -63,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             text.setText(gameString); //Print the string ver
         } // run Button
+// /*
         else if (v.getId() == R.id.quitButton) {
             finish();
             System.exit(0);
@@ -72,5 +73,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             secondInstance = new GameState(0, firstInstance);
             thirdInstance = new GameState();
         }// New Game Button
+// */
     }
 }
