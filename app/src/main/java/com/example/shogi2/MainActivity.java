@@ -66,19 +66,6 @@ public class MainActivity extends AppCompatActivity {
 
                     text.setText(gameString); //Print the string ver
                 } // run Button
-
-    /*
-                else if (v.getId() == R.id.quitButton) {
-                    finish();
-                    System.exit(0);
-                } // Quit button
-                else if (v.getId() == R.id.newGameButton) { // TODO need to be changed out of instances after GameState turn-in
-                    firstInstance = new GameState();
-                    secondInstance = new GameState(0, firstInstance);
-                    thirdInstance = new GameState();
-                }// New Game Button
-    */
-
             }
         });
     }
