@@ -2,6 +2,7 @@ package com.example.shogi2;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,13 +13,14 @@ import androidx.appcompat.app.AppCompatActivity;
  * @author Brent Torres
  * @author Matthew Tran
  *
- * @version 10/11/2022
+ * @version 10/14/2022
  *
  * */
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
     private EditText text;
+    private Button woo;
     private GameState firstInstance, secondInstance, thirdInstance;
     private String gameString;
 
@@ -29,50 +31,55 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         text = findViewById(R.id.stateText); //Make this a reference to the @string?
+        woo = findViewById(R.id.runButton);
 
         firstInstance = new GameState();
         secondInstance = new GameState(0, firstInstance);
         //TODO: Fix gamestate copy cntr to make it from a specific player perspective
         thirdInstance = new GameState();
 
-    }
+        woo.setOnClickListener(new View.OnClickListener() {
 
-    @Override
-    public void onClick(View v) {
+            @Override
+            public void onClick (View view) {
 
-        if (v.getId() == R.id.runButton) {
+                if (view.getId() == R.id.runButton) {
 
-            text.setText(""); //Clear the string
+                    text.setText(""); //Clear the string
 
-            gameString = firstInstance.toString(); //Default board
+                    gameString = firstInstance.toString(); //Default board
 
-            //TODO: Call a method here to make a change in firstInstance
+                    //TODO: Call a method here to make a change in firstInstance
 
-            gameString = gameString + "\n" + firstInstance.toString() + "\n"; //Append after a change
+                    gameString = gameString + "\n" + firstInstance.toString() + "\n"; //Append after a change
 
-            //TODO: Call a method here to make a change in firstInstance
+                    //TODO: Call a method here to make a change in firstInstance
 
-            gameString = gameString + "\n" + firstInstance.toString() + "\n"; //Append after a change
+                    gameString = gameString + "\n" + firstInstance.toString() + "\n"; //Append after a change
 
-            //TODO: Call a method here to make a change in firstInstance
+                    //TODO: Call a method here to make a change in firstInstance
 
-            gameString = gameString + "\n" + firstInstance.toString() + "\n"; //Append after a change
+                    gameString = gameString + "\n" + firstInstance.toString() + "\n"; //Append after a change
 
-            gameString = gameString + "\n" + secondInstance.toString() + "\n"
-                    + thirdInstance.toString() + "\n" + "\n"; //Append the other two instances (should be the same)
+                    gameString = gameString + "\n" + secondInstance.toString() + "\n"
+                            + thirdInstance.toString() + "\n" + "\n"; //Append the other two instances (should be the same)
 
-            text.setText(gameString); //Print the string ver
-        } // run Button
-// /*
-        else if (v.getId() == R.id.quitButton) {
-            finish();
-            System.exit(0);
-        } // Quit button
-        else if (v.getId() == R.id.newGameButton){ // TODO need to be changed out of instances after GameState turn-in
-            firstInstance = new GameState();
-            secondInstance = new GameState(0, firstInstance);
-            thirdInstance = new GameState();
-        }// New Game Button
-// */
+                    text.setText(gameString); //Print the string ver
+                } // run Button
+
+    /*
+                else if (v.getId() == R.id.quitButton) {
+                    finish();
+                    System.exit(0);
+                } // Quit button
+                else if (v.getId() == R.id.newGameButton) { // TODO need to be changed out of instances after GameState turn-in
+                    firstInstance = new GameState();
+                    secondInstance = new GameState(0, firstInstance);
+                    thirdInstance = new GameState();
+                }// New Game Button
+    */
+
+            }
+        });
     }
 }
