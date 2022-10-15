@@ -44,7 +44,8 @@ public class GameState {
     private ArrayList<Piece> pieces1;
     private ArrayList<Piece> pieces2;
     private String banner;
-    private int turnCount = 1;
+    private int initX;
+    private int initY;
 
     /**
      * Current state of the game constructor
@@ -121,51 +122,65 @@ public class GameState {
      *
      * @return selected piece from pieces array otherwise 0 (none)
      */
-    public int selectPiece() {
-        switch(turnCount) {
-            case 1:
-                turnCount++;
-                return pieces1.indexOf(Piece.GAME_PIECES.PAWN);
-            case 2:
-                turnCount++;
-                return pieces2.indexOf(Piece.GAME_PIECES.PAWN);
-            case 3:
-                return pieces1.indexOf(Piece.GAME_PIECES.ROOK);
-        }
-        return 0;
+    public int selectPiece1() {
+        return pieces1.indexOf(Piece.GAME_PIECES.PAWN);
+    }
+
+    public int selectPiece2() {
+        return pieces1.indexOf(Piece.GAME_PIECES.PAWN);
+    }
+
+    public int selectPiece3() {
+        return pieces1.indexOf(Piece.GAME_PIECES.ROOK);
     }
 
     /**
      * Piece movement (hard coded now, flexible code later)
      * Pre-set pieces: p1 (pawn) at (7r,8c), p2 (pawn) at (3r,1c), p1 (rook) at (8r,8c)
      */
-    public void initialPositions() {
-        // identify piece
+    public void initialPositions1() {
+        // Pawn
+        initX = 8;
+        initY = 7;
+    }
 
+    public void initialPositions2() {
+        // Pawn
+        initX = 7;
+        initY = 8;
+    }
 
+    public void initialPositions3() {
+        // Rook
+        initX = 1;
+        initY = 3;
     }
 
     /**
      * Piece movement (hard coded now, flexible code later)
      * Pre-set pieces: p1 (pawn) to (6r,8c), p2 (pawn) to (4r,1c), p1 (rook) to (7r,8c)
      */
-    public void movePiece() {
+    public void movePiece1() {
+        // Pawn, p1
+        initX = 8;
+        initY = 6;
+    }
 
-        // identify the piece
-        switch(turnCount) {
-            case 1:
-                break;
-            case 2:
-                break;
-            case 3:
-                break;
+    public void movePiece2() {
+        // Pawn, p2
+        initX = 1;
+        initY = 4;
+    }
 
-        }
+    public void movePiece3() {
+        // Rook, p1
+        initX = 8;
+        initY = 7;
     }
 
     /**
      * Piece capture (hard coded now, flexible code later)
-     * pieces: (none) (skipping for GameState, from meeting)
+     * pieces: (none) (skipping for GameState, from meeting on Wed.)
      */
     public int pieceCapture() {
         // ID of piece captured
