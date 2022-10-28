@@ -43,9 +43,28 @@ public class Piece {
 
     public DIRECTION directionMovement;
 
+    public int row, col;
+
     public Piece(GAME_PIECES type, DIRECTION dir) {
+        row = col = -1;
         pieceType = type;
         directionMovement = dir;
+    }
+
+    public int getCol() {
+        return col;
+    }
+
+    public int getRow() {
+        return row;
+    }
+
+    public void setCol(int col) {
+        this.col = col;
+    }
+
+    public void setRow(int row) {
+        this.row = row;
     }
 
 }

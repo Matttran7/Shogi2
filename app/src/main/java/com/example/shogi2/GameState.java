@@ -44,6 +44,7 @@ public class GameState {
     private ArrayList<Piece> pieces1;
     private ArrayList<Piece> pieces2;
     private String banner;
+    private int turnCount = 0;
     private int initX;
     private int initY;
 
@@ -51,12 +52,14 @@ public class GameState {
      * Current state of the game constructor
      */
     public GameState() { //Cntr
-        turn = first();
+        turn = !first();
         board = new Board();
         grave_1 = new Graveyard();
         grave_2 = new Graveyard();
         pieces1 = new ArrayList<Piece>();
         pieces2 = new ArrayList<Piece>();
+
+        changeTurn();
     }
 
     /**
@@ -90,19 +93,200 @@ public class GameState {
      */
     @Override
     public String toString() {
-        return "Weeee";
+        String string = "Player 1 Pieces: ";
+        int iterations = 0;
+        for (Piece p : pieces1) {
+            if (!(p.getRow() == -1 || p.getCol() == -1)) { //Don't mention promotion pieces ugh
+                string = string + p.pieceType + " at (" + p.getCol() + ", " + p.getRow() + ")";
+                iterations++;
+                if (iterations != pieces1.size()) {
+                    string = string + "; ";
+                } else {
+                    string = string + ". ";
+                }
+            }
+        }
+
+        string = string + "Player 2 Pieces: ";
+        iterations = 0;
+        for (Piece p : pieces2) {
+            if (!(p.getRow() == -1 || p.getCol() == -1)) { //Don't mention promotion pieces ugh
+                string = string + p.pieceType + " at (" + p.getCol() + ", " + p.getRow() + ")";
+                iterations++;
+                if (iterations != pieces2.size()) {
+                    string = string + "; ";
+                } else {
+                    string = string + ". ";
+                }
+            }
+        }
+
+        if (!isChecked()) {
+            string = string + "No one is in check. ";
+        }
+
+        string = string + "Number of turns made: " + turnCount + ". ";
+
+        return string + banner + ".";
     }
+
 
     //Make methods for defined actions
     //make pieces
     private void assignPieces() {
         for (Piece.GAME_PIECES piece : Piece.GAME_PIECES.values()) {
             for (int i = 0; i < piece.getAmount(); i++) {
-                pieces1.add(new Piece(piece, Piece.DIRECTION.FORWARD));
-                pieces2.add(new Piece(piece,Piece.DIRECTION.BACKWARD));
+                pieces1.add(new Piece(piece, Piece.DIRECTION.FORWARD)); //player 1 (id = 0)
+                pieces2.add(new Piece(piece,Piece.DIRECTION.BACKWARD)); //player 2 (id = 1)
             } // for i
         } // for pieces
+
+        placePieces(pieces1, 0);
+        placePieces(pieces2, 1);
     }
+
+
+    /**
+     * Assigns rows and columns to each piece for initial setup for each player
+     * Promotion pieces are unassigned due to them not existing on the board at the start
+     * */
+    private void placePieces(ArrayList<Piece> heehee, int id) { //board is 9x9 tiles
+        //front row is 9 pawns
+        //middle row is 1 space, bishop, 5 spaces, rook, 1 space (left to right from players pov)
+        //back row is lance, knight, silver, gold, king, gold, silver, knight, lance
+        int pawnNum = 0, lanceNum = 0, knightNum = 0, goldNum = 0, silvNum = 0;
+
+        if (id == 0) { //forward facing pieces (player 1)
+            for (Piece p : heehee) {
+                switch (p.pieceType.getID()) { //What kind of piece is it
+                    case R.drawable.promoted_bishop: case R.drawable.promoted_lance:
+                    case R.drawable.promoted_knight: case R.drawable.promoted_pawn:
+                    case R.drawable.promoted_rook: case R.drawable.promoted_silv_gen:
+                        //if it's a promoted piece skip it
+                        break;
+                    case R.drawable.pawn:
+                        p.setRow(6); //up down
+                        p.setCol(pawnNum); //side to side
+                        pawnNum++;
+                        break;
+                    case R.drawable.bishop:
+                        p.setRow(7);
+                        p.setCol(1);
+                        break;
+                    case R.drawable.rook:
+                        p.setRow(7);
+                        p.setCol(7);
+                        break;
+                    case R.drawable.lance:
+                        p.setRow(8);
+                        if (lanceNum == 0) {
+                            p.setCol(0);
+                        } else {
+                            p.setCol(8);
+                        }
+                        lanceNum++;
+                        break;
+                    case R.drawable.knight:
+                        p.setRow(8);
+                        if (knightNum == 0) {
+                            p.setCol(1);
+                        } else {
+                            p.setCol(7);
+                        }
+                        knightNum++;
+                        break;
+                    case R.drawable.silv_gen:
+                        p.setRow(8);
+                        if (silvNum == 0) {
+                            p.setCol(2);
+                        } else {
+                            p.setCol(6);
+                        }
+                        silvNum++;
+                        break;
+                    case R.drawable.gold_gen:
+                        p.setRow(8);
+                        if (goldNum == 0) {
+                            p.setCol(3);
+                        } else {
+                            p.setCol(5);
+                        }
+                        goldNum++;
+                        break;
+                    case R.drawable.king:
+                        p.setRow(8);
+                        p.setCol(4);
+                        break;
+                }
+            }
+        } //end p1 setup
+
+        if (id == 1) { //backward facing pieces (player 2)
+            for (Piece p : heehee) {
+                switch (p.pieceType.getID()) { //What kind of piece is it
+                    case R.drawable.promoted_bishop: case R.drawable.promoted_lance:
+                    case R.drawable.promoted_knight: case R.drawable.promoted_pawn:
+                    case R.drawable.promoted_rook: case R.drawable.promoted_silv_gen:
+                        //if it's a promoted piece skip it
+                        break;
+                    case R.drawable.pawn:
+                        p.setRow(2); //up down
+                        p.setCol(pawnNum); //side to side
+                        pawnNum++;
+                        break;
+                    case R.drawable.bishop: //switch cols for opponent bishop and rook bc perspective
+                        p.setRow(1);
+                        p.setCol(7);
+                        break;
+                    case R.drawable.rook:
+                        p.setRow(1);
+                        p.setCol(1);
+                        break;
+                    case R.drawable.lance:
+                        p.setRow(0);
+                        if (lanceNum == 0) {
+                            p.setCol(0);
+                        } else {
+                            p.setCol(8);
+                        }
+                        lanceNum++;
+                        break;
+                    case R.drawable.knight:
+                        p.setRow(0);
+                        if (knightNum == 0) {
+                            p.setCol(1);
+                        } else {
+                            p.setCol(7);
+                        }
+                        knightNum++;
+                        break;
+                    case R.drawable.silv_gen:
+                        p.setRow(0);
+                        if (silvNum == 0) {
+                            p.setCol(2);
+                        } else {
+                            p.setCol(6);
+                        }
+                        silvNum++;
+                        break;
+                    case R.drawable.gold_gen:
+                        p.setRow(0);
+                        if (goldNum == 0) {
+                            p.setCol(3);
+                        } else {
+                            p.setCol(5);
+                        }
+                        goldNum++;
+                        break;
+                    case R.drawable.king:
+                        p.setRow(0);
+                        p.setCol(4);
+                        break;
+                }
+            }
+        } //end p2 setup
+    }
+
     // see who goes first
     public boolean first() {
         Random rand = new Random();
@@ -136,28 +320,6 @@ public class GameState {
 
     /**
      * Piece movement (hard coded now, flexible code later)
-     * Pre-set pieces: p1 (pawn) at (7r,8c), p2 (pawn) at (3r,1c), p1 (rook) at (8r,8c)
-     */
-    public void initialPositions1() {
-        // Pawn
-        initX = 8;
-        initY = 7;
-    }
-
-    public void initialPositions2() {
-        // Pawn
-        initX = 7;
-        initY = 8;
-    }
-
-    public void initialPositions3() {
-        // Rook
-        initX = 1;
-        initY = 3;
-    }
-
-    /**
-     * Piece movement (hard coded now, flexible code later)
      * Pre-set pieces: p1 (pawn) to (6r,8c), p2 (pawn) to (4r,1c), p1 (rook) to (7r,8c)
      */
     public void movePiece1() {
@@ -177,6 +339,9 @@ public class GameState {
         initX = 8;
         initY = 7;
     }
+    //TODO: CHANGE THE MOVE METHODS TO USE setCol AND setRow TO CHANGE THE PLACEMENT OF A PIECE
+    //      AND ADD TO THE TURNCOUNT
+
 
     /**
      * Piece capture (hard coded now, flexible code later)

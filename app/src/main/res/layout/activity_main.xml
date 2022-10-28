@@ -15,7 +15,6 @@
             android:id="@+id/runButton"
             android:layout_width="match_parent"
             android:layout_height="50dp"
-            android:onClick="onClick"
             android:text="Run Test" />
 
     </LinearLayout>
@@ -33,6 +32,4 @@
             android:text="@string/state_text" />
 
     </LinearLayout>
-
-
 </androidx.appcompat.widget.LinearLayoutCompat>
